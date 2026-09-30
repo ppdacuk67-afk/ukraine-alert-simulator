@@ -1,0 +1,12 @@
+{
+  "name": "ukraine-alert-simulator",
+  "version": "2.1.0",
+  "private": true,
+  "description": "Manual Ukraine alert map simulator",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

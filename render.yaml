@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: ukraine-alert-simulator
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start

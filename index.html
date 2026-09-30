@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Карта тривог України — ручний симулятор</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+  <aside class="panel">
+    <div class="brand">
+      <h1>Карта тривог</h1>
+      <span class="sim-badge">РУЧНА СИМУЛЯЦІЯ</span>
+    </div>
+    <p class="subtitle">Україна: міста, селища, села та райони через пошук OpenStreetMap.</p>
+
+    <section class="card">
+      <h2>1. Знайти місце</h2>
+      <div class="search-wrap">
+        <div class="search-line">
+          <input id="placeSearch" autocomplete="off" placeholder="Напиши місто або район…" />
+          <button id="searchBtn" type="button" class="search-btn">Знайти</button>
+        </div>
+        <div id="searchStatus" class="search-status">Введи назву і натисни «Знайти»</div>
+        <div id="suggestions" class="suggestions hidden"></div>
+      </div>
+
+      <label for="quickSelect">Швидкий вибір обласного центру</label>
+      <select id="quickSelect">
+        <option value="">— вибрати —</option>
+      </select>
+
+      <div id="selectedPlace" class="selected-place empty">Місце ще не вибрано</div>
+    </section>
+
+    <section class="card">
+      <h2>2. Тип загрози</h2>
+      <label for="threatSelect">Загроза</label>
+      <select id="threatSelect">
+        <option value="air">Повітряна тривога</option>
+        <option value="drone">Загроза БпЛА / Shahed</option>
+        <option value="missile">Ракетна загроза</option>
+        <option value="strike">Загроза ракетного удару</option>
+      </select>
+
+      <label for="scopeSelect">Що підсвітити</label>
+      <select id="scopeSelect">
+        <option value="place">Вибране місто / район</option>
+        <option value="wide">Велика зона навколо місця</option>
+        <option value="country">Вся Україна</option>
+      </select>
+
+      <label for="volumeRange">Гучність: <b id="volumeValue">100%</b></label>
+      <input id="volumeRange" class="range" type="range" min="0" max="100" value="100" />
+
+      <div class="buttons">
+        <button id="startBtn" class="danger">Запустити</button>
+        <button id="stopBtn" class="safe">Відбій тут</button>
+      </div>
+      <button id="stopAllBtn" class="stop-all">Відбій усіх загроз</button>
+    </section>
+
+    <section class="card">
+      <h2>Активні загрози</h2>
+      <div id="activeList" class="active-list">Немає активних загроз.</div>
+    </section>
+
+    <section class="card legend-card">
+      <div><span class="legend yellow"></span>БпЛА / Shahed — жовтий</div>
+      <div><span class="legend red"></span>Повітряна / ракетна — червоний</div>
+      <div><span class="legend green"></span>Немає загрози — зелений</div>
+    </section>
+  </aside>
+
+  <main class="map-area">
+    <div id="map"></div>
+    <div id="banner" class="banner hidden"></div>
+    <div class="map-note">Ручна демонстрація — не реальні онлайн-дані</div>
+  </main>
+</div>
+
+<audio id="airSound" src="audio/air_alert.mp3" preload="auto"></audio>
+<audio id="droneSound" src="audio/drone_alert.mp3" preload="auto"></audio>
+<audio id="allClearSound" src="audio/all_clear.mp3" preload="auto"></audio>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
